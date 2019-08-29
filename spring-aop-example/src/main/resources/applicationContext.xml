@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   http://www.springframework.org/schema/beans/spring-beans.xsd 
+	   http://www.springframework.org/schema/aop 
+	   http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- Advice beans -->
+	<bean id="track" class="com.springaop.Track"/>
+	<bean id="trackWithXml" class="com.springaop.TrackWithXml"/>
+	
+	<!-- business beans -->
+	<bean id="flow1" class="com.springaop.Flow1"/>
+	<bean id="flow1" class="com.springaop.Flow2"/>
+	
+	<!-- Annotations based AOP configuration -->
+	<!-- <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/> -->
+
+	<!-- This is for enabling auto proxy to run the Annotations based AOP's-->	
+	<aop:aspectj-autoproxy />
+	
+	<!-- Xml based AOP configuration --> 
+	<!-- <aop:config>
+	
+	<aop:pointcut id="businessService" 
+        expression="execution(* com.springaop.Flow1.*(..))"/>
+        
+		<aop:aspect id="aspect" ref="trackWithXml">
+			<aop:before method="adviceBefore" pointcut="execution(* *(..))"/>
+			<aop:after-returning method="adviceAfterReturning" returning="result" pointcut-ref="businessService"/>
+			<aop:after method="adviceAfter" pointcut="execution(* *(..))"/>
+		</aop:aspect>
+		
+		<aop:aspect id="aspect1" ref="trackWithXml">
+			<aop:after-returning method="adviceAfterReturning" returning="result" pointcut-ref="businessService"/>
+		</aop:aspect>
+			
+ 	</aop:config> -->
+	
+</beans>
